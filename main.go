@@ -20,7 +20,7 @@ func main() {
 	flag.StringVar(&listenPort, "port", "8080", "HTTP port to listen")
 	flag.StringVar(&serveDirectoryPath, "path", "/myfiles", "Path to directory with files")
 	flag.Parse()
-	log("Parameters, port, dir: ", listenPort, serveDirectoryPath)
+	log("Parameters: port, dir: ", listenPort, serveDirectoryPath)
 
 	var files = dirList(serveDirectoryPath)
 	if len(files) == 0 {
