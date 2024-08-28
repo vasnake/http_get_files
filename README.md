@@ -8,7 +8,10 @@ Well, this time VLC magic dindn't work for me.
 After a couple of hours I said to myself - "fuck it, all I need is a primitive HTTP server, nothing more".
 And there it is, a primitive HTTP server.
 
-I build it and run in WSL2 under Win11 env.
+On my phone, in media player I just open HTTP stream from URL like `http://192.168.1.6:8080/1` and voilà,
+I'm watching first episode from selected season (directory) of my favorite TV show.
+
+Building and running in WSL2 under Win11 env:
 
 Build
 ```s
@@ -52,6 +55,7 @@ where `192.168.1.6` is IP address for your box, and `8080` is IP port given in p
 
 Output example
 ```s
+# wsl2
 go run http_get_files -port 8080 -path /mnt/c/Users/vlk/Downloads/TV
 2024-08-28T11:16:46.724Z: Parameters: port, dir: "8080"; "/mnt/c/Users/vlk/Downloads/TV"; 
 2024-08-28T11:16:46.726Z: skip directory "Eng";
