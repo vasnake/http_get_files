@@ -1,6 +1,7 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"io/fs"
 	"net/http"
@@ -22,11 +23,19 @@ func main() {
 	slices.Sort(files)
 
 	var mapping = buildMapping(files)
+	printMappingAsJson(mapping)
 
 	var listenOn = fmt.Sprintf(":%v", listenPort)
 
-	var err = serve(mapping, listenOn)
+	err := serve(mapping, listenOn)
 	panicOnError("Serve failed", err)
+}
+
+func printMappingAsJson(mapping map[string]string) {
+	bytes, err := json.MarshalIndent(mapping, "", "  ")
+	panicOnError("json.Marshal failed", err)
+	log("Files mapping for server, Json:")
+	fmt.Println(string(bytes))
 }
 
 func serve(mapping map[string]string, listenOn string) error {
