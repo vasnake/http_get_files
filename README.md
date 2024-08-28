@@ -42,3 +42,6 @@ netsh interface ip show address
 
 ```
 snippets
+
+Program have two parameters: HTTP server port, and path to directory with files to serve.
+Usage example: `go run http_get_files -port 8080 -path "/mnt/c/Users/vlk/Downloads/TV_series"`

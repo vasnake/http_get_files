@@ -11,4 +11,4 @@ go mod tidy
 gofmt -w .
 go vet http_get_files
 go test http_get_files
-go run http_get_files
+go run http_get_files -port 8080 -path "${VIDEOS_DIR:-fubar}"

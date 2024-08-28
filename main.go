@@ -2,6 +2,7 @@ package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"io/fs"
 	"net/http"
@@ -12,10 +13,15 @@ import (
 )
 
 // parameters
-const listenPort = "8080"
-const serveDirectoryPath = "/mnt/c/Users/valik/Downloads/Reacher.S02.WEB-DLRip.LF"
+var listenPort string = "8080"
+var serveDirectoryPath = "/myfiles"
 
 func main() {
+	flag.StringVar(&listenPort, "port", "8080", "HTTP port to listen")
+	flag.StringVar(&serveDirectoryPath, "path", "/myfiles", "Path to directory with files")
+	flag.Parse()
+	log("Parameters, port, dir: ", listenPort, serveDirectoryPath)
+
 	var files = dirList(serveDirectoryPath)
 	if len(files) == 0 {
 		panicOnError("No files to serve", fmt.Errorf("len(files) == 0"))
