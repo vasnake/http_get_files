@@ -29,7 +29,7 @@ go vet http_get_files
 go test http_get_files
 go run http_get_files
 
-# network, Win11 + WSL2
+# network setup, Win11 + WSL2
 
 # ubuntu
 ifconfig # 172.19.24.89
@@ -45,3 +45,43 @@ snippets
 
 Program have two parameters: HTTP server port, and path to directory with files to serve.
 Usage example: `go run http_get_files -port 8080 -path "/mnt/c/Users/vlk/Downloads/TV_series"`
+
+All files in given directory will be sorted, enumerated starting from `1`,
+and made accessable via urls like `http://192.168.1.6:8080/1`
+where `192.168.1.6` is IP address for your box, and `8080` is IP port given in parameters.
+
+Output example
+```s
+go run http_get_files -port 8080 -path /mnt/c/Users/vlk/Downloads/TV
+2024-08-28T11:16:46.724Z: Parameters: port, dir: "8080"; "/mnt/c/Users/vlk/Downloads/TV"; 
+2024-08-28T11:16:46.726Z: skip directory "Eng";
+2024-08-28T11:16:46.726Z: file added: "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E01.avi";
+2024-08-28T11:16:46.726Z: file added: "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E02.avi";
+2024-08-28T11:16:46.726Z: file added: "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E03.avi";
+2024-08-28T11:16:46.726Z: file added: "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E04.avi";
+2024-08-28T11:16:46.726Z: file added: "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E05.avi";
+2024-08-28T11:16:46.726Z: file added: "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E06.avi";
+2024-08-28T11:16:46.726Z: file added: "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E07.avi";
+2024-08-28T11:16:46.726Z: file added: "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E08.avi";
+2024-08-28T11:16:46.726Z: added mapping "1"; "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E01.avi";
+2024-08-28T11:16:46.726Z: added mapping "2"; "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E02.avi";
+2024-08-28T11:16:46.726Z: added mapping "3"; "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E03.avi";
+2024-08-28T11:16:46.726Z: added mapping "4"; "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E04.avi";
+2024-08-28T11:16:46.726Z: added mapping "5"; "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E05.avi";
+2024-08-28T11:16:46.726Z: added mapping "6"; "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E06.avi";
+2024-08-28T11:16:46.726Z: added mapping "7"; "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E07.avi";
+2024-08-28T11:16:46.726Z: added mapping "8"; "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E08.avi";
+2024-08-28T11:16:46.726Z: Files mapping for server, Json:
+{
+  "1": "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E01.avi",
+  "2": "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E02.avi",
+  "3": "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E03.avi",
+  "4": "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E04.avi",
+  "5": "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E05.avi",
+  "6": "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E06.avi",
+  "7": "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E07.avi",
+  "8": "/mnt/c/Users/vlk/Downloads/TV/foobar-S1E08.avi"
+}
+2024-08-28T11:16:46.726Z: Starting server at ":8080";
+```
+snippets
